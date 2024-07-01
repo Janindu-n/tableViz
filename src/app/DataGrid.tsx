@@ -12,7 +12,6 @@ const DataGrid = () => {
   const [columnDefs, setColumnDefs] = useState([]);
   const [rowCount, setRowCount] = useState(0);
 
-  // Function to generate column definitions dynamically
   const generateColumnDefs = (features) => {
     return features.map(feature => ({
       headerName: feature.name,
@@ -23,7 +22,6 @@ const DataGrid = () => {
     }));
   };
 
-  // Function to fetch all data with pagination
   const fetchAllData = async () => {
     let allRows = [];
     let currentPage = 0;
@@ -31,25 +29,23 @@ const DataGrid = () => {
     let totalRows = 0;
 
     try {
-      // Fetch the first page to get the total number of rows
+      //first page to get the total num of rows
       const response = await axios.get(`https://datasets-server.huggingface.co/rows?dataset=allenai%2Fopenbookqa&config=additional&split=train&limit=${pageSize}&offset=${currentPage * pageSize}`);
       totalRows = response.data.num_rows_total;
       allRows = allRows.concat(response.data.rows.map(item => item.row));
 
-      // Fetch the remaining pages
+      // remaining pages
       while (allRows.length < totalRows) {
         currentPage++;
         const response = await axios.get(`https://datasets-server.huggingface.co/rows?dataset=allenai%2Fopenbookqa&config=additional&split=train&limit=${pageSize}&offset=${currentPage * pageSize}`);
         allRows = allRows.concat(response.data.rows.map(item => item.row));
       }
 
-      // Set the row data and total row count
       setRowData(allRows);
       setRowCount(totalRows);
-
-      // Generate column definitions based on API response
       const columns = generateColumnDefs(response.data.features);
       setColumnDefs(columns);
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
