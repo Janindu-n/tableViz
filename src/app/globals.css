@@ -31,3 +31,46 @@ body {
     text-wrap: balance;
   }
 }
+
+
+
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.side-panel {
+  width: 250px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.side-panel nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-panel nav ul li {
+  margin-bottom: 10px;
+}
+
+.side-panel nav ul li button {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  text-align: left;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.side-panel nav ul li button:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}

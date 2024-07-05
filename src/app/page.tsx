@@ -1,13 +1,15 @@
+//@ts-nocheck
+// src/app/page.tsx
 import React from 'react';
-import DataGrid from './DataGrid';
+import Layout from './layout';
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>City Graph DataViz</h1>
-      <DataGrid />
-    </div>
+    <Layout>
+      
+    </Layout>
   );
 };
 
 export default HomePage;
+
